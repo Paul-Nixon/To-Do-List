@@ -1,0 +1,204 @@
+/* General Styles START */
+*, *::before, *::after
+{
+    box-sizing: border-box;
+}
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+html
+{
+    font-size: 100%;
+}
+
+body
+{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.content-section
+{
+    margin: 1em;
+    width: 100%;
+    height: 100vh;
+}
+
+.container
+{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+.btn
+{
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.67em;
+    font-weight: bold;
+    outline: none;
+}
+/* General Styles END */
+
+
+/* Header Styles START */
+.header
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #800020; /* Burgundy */
+}
+
+.header-title
+{
+    font-size: 2em;
+    font-style: italic;
+    color: whitesmoke;
+    margin-bottom: 0;
+}
+
+.header-links
+{
+    padding: 1rem;
+}
+
+.header-links a
+{
+    color: whitesmoke;
+    font-size: 1.1em;
+    padding: 0.5em;
+    transition: color 350ms ease-in-out;
+}
+
+.header-links a:not(:last-child)
+{
+    margin-right: 1rem;
+}
+
+.header-links a:hover
+{
+    background-color: pink;
+    color: black;
+}
+
+.fa-bars
+{
+    position: absolute;
+    top: 1.75rem; /* Equivalent to 16px */
+    right: 1rem; /* Equivalent to 16px */
+    color: whitesmoke;
+    cursor: pointer;
+    display: none;
+}
+/* Header Styles END */
+
+
+/* index.html Styles START */
+.intro-container
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.cta-wrapper
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1rem;
+}
+
+.intro-title
+{
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.subtitle
+{
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
+  font-weight: bold;
+}
+
+.btn-wrapper
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list-btn, .about-btn
+{
+    font-size: 1.5em;
+    transition: color 300ms ease-in-out;
+}
+
+.todo-list-btn
+{
+    margin-right: 1em;
+}
+
+.about-btn
+{
+
+}
+/* index.html Styles END */
+
+
+/* Media Styles START */
+@media (max-width: 450px)
+{
+    /* Header Styles START */
+    .header
+    {
+        align-items: flex-start;
+    }
+
+    .header-title
+    {
+        padding-left: 0.5rem;
+    }
+
+    .fa-bars
+    {
+        display: block;
+    }
+
+    .header-links
+    {
+        display: none;
+
+    }
+
+    .header-links a:not(:last-child)
+    {
+        margin-bottom: 0.5rem;
+    }
+
+    .active
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    /* Header Styles END */
+}
+/* Media Styles END */
