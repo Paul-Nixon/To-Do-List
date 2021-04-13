@@ -28,8 +28,6 @@ a
 .content-section
 {
     margin: 1em;
-    width: 100%;
-    height: 100vh;
 }
 
 .container
@@ -47,6 +45,13 @@ a
     padding: 0.67em;
     font-weight: bold;
     outline: none;
+}
+
+.section-title
+{
+    font-weight: normal;
+    text-align: center;
+    font-size: 2.5em;
 }
 /* General Styles END */
 
@@ -112,6 +117,8 @@ a
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
+    width: 100%;
+    height: 100vh;
 }
 
 .cta-wrapper
@@ -126,13 +133,13 @@ a
 .intro-title
 {
   font-size: 2.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
 }
 
 .subtitle
 {
   font-size: 1.2em;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   font-weight: bold;
 }
 
@@ -147,18 +154,159 @@ a
 {
     font-size: 1.5em;
     transition: color 300ms ease-in-out;
+    border-radius: 0.625rem; /* Equivalent to 10px */
 }
 
 .todo-list-btn
 {
-    margin-right: 1em;
+    margin-right: 0.5em;
+    background-color: green;
+    color: yellow;
+    border: 3px solid red;
+}
+
+.todo-list-btn:hover
+{
+    background-color: rgb(20, 95, 20);
+    color: fuchsia;
 }
 
 .about-btn
 {
+    background-color: black;
+    color: white;
+    border: 3px solid yellow;
+}
 
+.about-btn:hover
+{
+    background-color: rgb(97, 93, 93);
+    color: black;
 }
 /* index.html Styles END */
+
+
+/* about.html Styles START */
+.about-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.name-and-pfp-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name
+{
+    font-weight: normal;
+    text-align: center;
+    font-size: 2.25em;
+    margin-bottom: 0.25em;
+}
+
+.pfp
+{
+    margin: 0;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    box-shadow: red 0px 0px 20px;
+}
+
+.profile-text
+{
+    text-align: center;
+    font-size: large;
+    font-weight: 550;
+    margin: 0;
+}
+
+.social-links-wrapper
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-linkedin, .fa-github
+{
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+}
+
+.fa-linkedin
+{
+    background: #007bb5;
+    margin-right: 0.625rem;
+}
+
+.fa-github
+{
+    background: #050708;
+}
+/* about.html Styles END */
+
+
+/* how-to-use.html Styles START */
+
+/* how-to-use.html Styles END */
+
+
+/* todo-list.html Styles START */
+.todo-list-main-section-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.todo-list
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+}
+
+.todo-list-menu-bar
+{
+    background-color: black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list-menu-btn
+{
+    background-color: black;
+    color: whitesmoke;
+    border: 0;
+    font-size: 1.2em;
+}
+
+.todo-list-menu-btn:hover
+{
+    background-color: grey;
+}
+
+
+/* todo-list.html Styles END */
 
 
 /* Media Styles START */
