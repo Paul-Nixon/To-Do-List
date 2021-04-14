@@ -285,7 +285,7 @@ a
 
 .todo-list-header
 {
-    background-color: black;
+    background-color: orange;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -296,20 +296,24 @@ a
 .todo-list-header-title
 {
     color: whitesmoke;
-    font-size: ;
-    margin-bottom: ;
+    font-size: 2em;
+    margin-bottom: 0.5em;
 }
 
 .todo-list-add-btn
 {
-    color: ;
-    background-color: ;
+    color: pink;
+    background-color: purple;
+    font-size: 1.2em;
+    border: 0;
 }
 
 .todo-list-add-btn:hover
 {
-
+    background-color: rgb(94, 11, 94);
 }
+
+
 /* todo-list.html Styles END */
 
 

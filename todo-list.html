@@ -29,9 +29,41 @@
         <div class="container todo-list-main-section-container">
             <div class="todo-list">
                 <div class="todo-list-header">
-                    <h2 class="todo-list-header-title">To-Do List</h2>
+                    <h2 class="todo-list-header-title">My To-Do List</h2>
                     <button type="button" class="btn todo-list-add-btn">Add a Task</button>
                 </div>
+
+                <ul class="my-list">
+                    <li>
+                        <label class="task-label">
+                            Task:
+                            <input type="text" class="task-input" required>
+                        </label>
+                        <br>
+
+                        <label for="" class="task-label">
+                            Start Time:
+                            <input type="time" id="start-time" required>
+                        </label>
+                        <br>
+
+                        <label for="" class="task-label">
+                            End Time:
+                            <input type="time" id="end-time" required>
+                        </label>
+                        <br>
+
+                        <button class="btn todo-list-submit-btn">Enter</button>
+                    </li>
+                    <li>
+                        <span class="task-title"></span>
+                        <span class="task-timeframe"></span>
+                        <button class="btn todo-list-edit-btn">Edit</button>
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
