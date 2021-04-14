@@ -283,29 +283,33 @@ a
     width: 50vw;
 }
 
-.todo-list-menu-bar
+.todo-list-header
 {
     background-color: black;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.todo-list-menu-btn
+.todo-list-header-title
 {
-    background-color: black;
     color: whitesmoke;
-    border: 0;
-    font-size: 1.2em;
+    font-size: ;
+    margin-bottom: ;
 }
 
-.todo-list-menu-btn:hover
+.todo-list-add-btn
 {
-    background-color: grey;
+    color: ;
+    background-color: ;
 }
 
+.todo-list-add-btn:hover
+{
 
+}
 /* todo-list.html Styles END */
 
 
