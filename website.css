@@ -313,7 +313,94 @@ a
     background-color: rgb(94, 11, 94);
 }
 
+.my-list
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 
+.my-list li
+{
+    cursor: pointer;
+    position: relative;
+    list-style-type: none;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 100%;
+}
+
+.my-list li:nth-child(odd)
+{
+    background: #f9f9f9;
+}
+
+.my-list li:hover
+{
+    background: #ddd;
+}
+
+.my-list li.checked
+{
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+.my-list li.checked::before
+{
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.task-content-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-label
+{
+    padding: 0.625rem;
+}
+
+.delete-btn
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+.delete:hover
+{
+    background-color: #f44336;
+    color: white;
+}
 /* todo-list.html Styles END */
 
 
