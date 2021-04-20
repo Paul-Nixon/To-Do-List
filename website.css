@@ -306,6 +306,7 @@ a
     background-color: purple;
     font-size: 1.2em;
     border: 0;
+    margin-bottom: 0.3125rem;
 }
 
 .todo-list-add-btn:hover
@@ -322,7 +323,6 @@ a
 
 .my-list li
 {
-    cursor: pointer;
     position: relative;
     list-style-type: none;
     background: brown;
@@ -378,11 +378,16 @@ a
     width: 7px;
 }
 
-.task-form-wrapper
+.task-form-wrapper, .task-content-wrapper
 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.task-form-wrapper
+{
+    background-color: grey;
 }
 
 .form-wrapper, .task-details-wrapper
@@ -395,7 +400,14 @@ a
 
 .task-label
 {
+    color: white;
     padding: 0.625rem; /* Equivalent to 10px */
+}
+
+.task-input
+{
+    font-size: 16px;
+    padding: 0.625rem;
 }
 
 .todo-list-submit-btn, .todo-list-edit-btn
@@ -414,19 +426,12 @@ a
 
 .todo-list-submit-btn:hover
 {
-
+    background-color: rgb(102, 102, 6);
 }
 
 .task-details-wrapper
 {
     padding-left: 0.625rem;
-}
-
-.task-content-wrapper
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;    
 }
 
 .task-title
