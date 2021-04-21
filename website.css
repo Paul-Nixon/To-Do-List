@@ -347,7 +347,7 @@ a
     color: coral;
 }
 
-.my-list li:nth-child(odd) .task-timeframe
+.my-list li:nth-child(odd) .task-timeframe, .my-list li:nth-child(odd) .task-date
 {
     color: hotpink;
 }
@@ -442,11 +442,20 @@ a
     color: navy;
 }
 
+.task-timeframe, .task-date
+{
+    color: orange;
+    font-weight: bold;
+}
+
 .task-timeframe
 {
     font-size: 1em;
-    color: orange;
-    font-weight: bold;
+}
+
+.task-date
+{
+    font-size: 1.2em;
 }
 
 .todo-list-edit-btn
