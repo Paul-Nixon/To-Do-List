@@ -46,7 +46,7 @@ function renderListItemForm()
     itemList.appendChild(itemForm);
 
     // Add an event listener to the form's submit button that'll call appendListItem(event).
-    itemList.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
+    itemForm.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
 }
 
 
@@ -63,7 +63,27 @@ function appendListItem(event)
     let day = convertDayNumberToAdjective(taskDate.substring(8));
 
     // Convert the time to 12-hour, AM/PM format.
+    let modifiedTaskTime = modifyTaskTime(taskStartTime);
     
+    // Add the item to the list.
+    itemForm.innerHTML = `
+    <div class="task-content-wrapper">
+        <div class="task-details-wrapper">
+            <span class="task-title">${taskName}</span>
+            <span class="task-date">${month} ${day}</span>
+            <span class="task-timeframe">${modifiedTaskTime}</span>
+        </div>
+
+        <button class="btn todo-list-edit-btn">Edit</button>
+    </div>`
+
+    // Add an event listener to the new item's Edit button that'll call editListItem(event).
+    itemForm.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
+}
+
+function editListItem(event)
+{
+    // 
 }
 
 
@@ -223,4 +243,38 @@ function convertDayNumberToAdjective(day_num)
 
     // Return the month's name.
     return day_adj;
+}
+
+
+function modifyTaskTime(taskStartTime)
+{
+    // Get the time's hours and minutes.
+    let timeSplit = taskStartTime.split(":"),
+    hours = timeSplit[0],
+    minutes = timeSplit[1],
+    meridian = ""; // Either AM or PM
+
+    // Convert the time to AM/PM format.
+    if (hours === "00")
+    {
+        hours = 12;
+        meridian = "AM";
+    }
+    else if (hours > "00" && hours < "12")
+    {
+        hours = hours.charAt(1);
+        meridian = "AM";
+    }
+    else if (Number.parseInt(hours) === 12)
+    {
+        meridian = "PM";
+    }
+    else if (Number.parseInt(hours) > 12)
+    {
+        hours = Number.parseInt(hours) - 12;
+        meridian = "PM";
+    }
+
+    // Return the modified time.
+    return hours + ":" + minutes + " " + meridian;
 }
