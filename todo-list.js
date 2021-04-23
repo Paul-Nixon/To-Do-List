@@ -60,13 +60,18 @@ function appendListItem(event)
 
     // Get the date's month & day.
     let month = convertMonthNumberToMonthName(taskDate.substring(5,7));
-    let day = convertDayNumberToAdjective(taskDate.substring(8));
+    let day = convertDayNumberToDayAdjective(taskDate.substring(8));
 
     // Convert the time to 12-hour, AM/PM format.
     let modifiedTaskTime = modifyTaskTime(taskStartTime);
     
-    // Add the item to the list.
-    itemForm.innerHTML = `
+    // Get the list and remove the current form from it.
+    let itemList = document.querySelector(".my-list");
+    itemList.removeChild(itemList.lastChild);
+
+    // Create an "li" element that contains the form's info.
+    let newItem = document.createElement("li");
+    newItem.innerHTML = `
     <div class="task-content-wrapper">
         <div class="task-details-wrapper">
             <span class="task-title">${taskName}</span>
@@ -77,13 +82,67 @@ function appendListItem(event)
         <button class="btn todo-list-edit-btn">Edit</button>
     </div>`
 
+    // Append the new item to the list.
+    itemList.appendChild(newItem);
+
     // Add an event listener to the new item's Edit button that'll call editListItem(event).
-    itemForm.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
+    newItem.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
 }
+
 
 function editListItem(event)
 {
-    // 
+    // Get the Edit button's respective list item and its info.
+    let listItem = event.target.parentElement,
+    taskTitle = listItem.querySelector(".task-title").innerText,
+    taskDate = listItem.querySelector(".task-date").innerText,
+    taskTimeframe = listItem.querySelector(".task-timeframe").innerText;
+
+    // Create an "li" element and append the form to it.
+    let itemForm = document.createElement("li");
+    itemForm.innerHTML = `
+    <div class="task-form-wrapper">
+        <div class="form-wrapper">
+            <label class="task-label">
+                Task:
+                <input type="text" class="task-input" placeholder="Title..." required>
+            </label>
+
+            <label class="task-label">
+                Date:
+                <input type="date" id="date" min="2021-01-01" max="2021-12-31" required>
+            </label>
+
+            <label class="task-label">
+                Start Time:
+                <input type="time" id="time" required>
+            </label>
+        </div>
+
+        <button class="btn todo-list-submit-btn">Submit</button>
+    </div>`
+
+    // Remove the list item and render the form.
+    let itemList = document.querySelector(".my-list");
+    itemList.removeChild(event.target.parentElement.parentElement);
+    itemList.appendChild(itemForm);
+
+    // Initialize the text field w/the task's title.
+    itemForm.querySelector(".task-input").value = taskTitle;
+
+    // Initialize the date field w/the task's date.
+    let monthNumber = convertMonthNameToMonthNumber(taskDate.substring(0, taskDate.indexOf(" ")));
+    let dayNum = convertDayAdjectiveToDayNumber(taskDate.substring(taskDate.indexOf(" ") + 1));
+    itemForm.querySelector("#date").value = "2021-" + monthNumber + "-" + dayNum;
+
+    // Initialize the time field w/the task's time.
+    let hour = convertHourTo24HourFormat(taskTimeframe.substring(0, taskTimeframe.indexOf(":")),
+    taskTimeframe.substring(taskTimeframe.indexOf(" ") + 1));
+    let minutes = taskTimeframe.substring(taskTimeframe.indexOf(":") + 1);
+    itemForm.querySelector("#time").value = hour + ":" + minutes;
+
+    // Add an event listener to the form's submit button that'll call appendListItem(event).
+    itemForm.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
 }
 
 
@@ -138,7 +197,7 @@ function convertMonthNumberToMonthName(month_num)
 }
 
 
-function convertDayNumberToAdjective(day_num)
+function convertDayNumberToDayAdjective(day_num)
 {
     // Create a variable that'll store the day's adjective.
     let day_adj = "";
@@ -277,4 +336,191 @@ function modifyTaskTime(taskStartTime)
 
     // Return the modified time.
     return hours + ":" + minutes + " " + meridian;
+}
+
+
+function convertMonthNameToMonthNumber(month_name)
+{
+    // Create a variable that'll store the month's name.
+    let month_number = "";
+
+    // Convert the month's number to its corresponding name.
+    switch (month_name)
+    {
+        case "January":
+            month_number = "01";
+            break;
+        case "February":
+            month_number = "02";
+            break;
+        case "March":
+            month_number = "03";
+            break;
+        case "April":
+            month_number = "04";
+            break;
+        case "May":
+            month_number = "05";
+            break;
+        case "June":
+            month_number = "06";
+            break;
+        case "July":
+            month_number = "07";
+            break;
+        case "August":
+            month_number = "08";
+            break;
+        case "September":
+            month_number = "09";
+            break;
+        case "October":
+            month_number = "10";
+            break;
+        case "November":
+            month_number = "11";
+            break;
+        case "December":
+            month_number = "12";
+            break;
+    }
+
+    // Return the month's name.
+    return month_number;
+}
+
+
+function convertDayAdjectiveToDayNumber(day_adj)
+{
+    // Create a variable that'll store the day's adjective.
+    let day_num = "";
+
+    // Convert the day's number to its corresponding adjective.
+    switch (day_adj)
+    {
+        case "1st":
+            day_num = "01";
+            break;
+        case "2nd":
+            day_num = "02";
+            break;
+        case "3rd":
+            day_num = "03";
+            break;
+        case "4th":
+            day_num = "04";
+            break;
+        case "5th":
+            day_num = "05";
+            break;
+        case "6th":
+            day_num = "06";
+            break;
+        case "7th":
+            day_num = "07";
+            break;
+        case "8th":
+            day_num = "08";
+            break;
+        case "9th":
+            day_num = "09";
+            break;
+        case "10th":
+            day_num = "10";
+            break;
+        case "11th":
+            day_num = "11";
+            break;
+        case "12th":
+            day_num = "12";
+            break;
+        case "13th":
+            day_num = "13";
+            break;
+        case "14th":
+            day_num = "14";
+            break;
+        case "15th":
+            day_num = "15";
+            break;
+        case "16th":
+            day_num = "16";
+            break;
+        case "17th":
+            day_num = "17";
+            break;
+        case "18th":
+            day_num = "18";
+            break;
+        case "19th":
+            day_num = "19";
+            break;
+        case "20th":
+            day_num = "20";
+            break;
+        case "21st":
+            day_adj = "21";
+            break;
+        case "22nd":
+            day_num = "22";
+            break;
+        case "23rd":
+            day_num = "23";
+            break;
+        case "24th":
+            day_num = "24";
+            break;
+        case "25th":
+            day_num = "25";
+            break;
+        case "26th":
+            day_num = "26";
+            break;
+        case "27th":
+            day_num = "27";
+            break;
+        case "28th":
+            day_num = "28";
+            break;
+        case "29th":
+            day_num = "29";
+            break;
+        case "30th":
+            day_num = "30";
+            break;
+        case "31st":
+            day_num = "31";
+            break;
+    }
+
+    // Return the month's name.
+    return day_num;
+}
+
+
+function convertHourTo24HourFormat(hour, meridian)
+{
+    // Create a variable that'll store the converted hour.
+    let modified_hour = "";
+
+    // Convert the task's hour to 24-hour format, if necessary.
+    if (Number.parseInt(hour) < 12 && meridian === "AM")
+    {
+        modified_hour = hour;
+    }
+    else if (Number.parseInt(hour) === 12 && meridian === "AM")
+    {
+        modified_hour = "00";
+    }
+    else if (Number.parseInt(hour) < 12 && meridian === "PM")
+    {
+        modified_hour = Number.parseInt(hour) + 12;
+    }
+    else if (Number.parseInt(hour) === 12 && meridian === "PM")
+    {
+        modified_hour = "12";
+    }
+
+    // Return the modified hour.
+    return modified_hour;
 }
