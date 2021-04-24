@@ -53,7 +53,7 @@ function renderListItemForm()
 function appendListItem(event)
 {
     // Get the form and its inputs.
-    let itemForm = event.target.parentElement,
+    let itemForm = event.target.closest("li"),
     taskName = itemForm.querySelector(".task-input").value,
     taskDate = itemForm.querySelector("#date").value,
     taskStartTime = itemForm.querySelector("#time").value;
@@ -65,13 +65,8 @@ function appendListItem(event)
     // Convert the time to 12-hour, AM/PM format.
     let modifiedTaskTime = modifyTaskTime(taskStartTime);
     
-    // Get the list and remove the current form from it.
-    let itemList = document.querySelector(".my-list");
-    itemList.removeChild(itemList.lastChild);
-
-    // Create an "li" element that contains the form's info.
-    let newItem = document.createElement("li");
-    newItem.innerHTML = `
+    // Remove the list item's form and render its info.
+    itemForm.innerHTML = `
     <div class="task-content-wrapper">
         <div class="task-details-wrapper">
             <span class="task-title">${taskName}</span>
@@ -82,25 +77,21 @@ function appendListItem(event)
         <button class="btn todo-list-edit-btn">Edit</button>
     </div>`
 
-    // Append the new item to the list.
-    itemList.appendChild(newItem);
-
     // Add an event listener to the new item's Edit button that'll call editListItem(event).
-    newItem.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
+    itemForm.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
 }
 
 
 function editListItem(event)
 {
     // Get the Edit button's respective list item and its info.
-    let listItem = event.target.parentElement,
+    let listItem = event.target.closest("li"),
     taskTitle = listItem.querySelector(".task-title").innerText,
     taskDate = listItem.querySelector(".task-date").innerText,
     taskTimeframe = listItem.querySelector(".task-timeframe").innerText;
 
-    // Create an "li" element and append the form to it.
-    let itemForm = document.createElement("li");
-    itemForm.innerHTML = `
+    // Render the list item's info as a form.
+    listItem.innerHTML = `
     <div class="task-form-wrapper">
         <div class="form-wrapper">
             <label class="task-label">
@@ -122,27 +113,35 @@ function editListItem(event)
         <button class="btn todo-list-submit-btn">Submit</button>
     </div>`
 
-    // Remove the list item and render the form.
-    let itemList = document.querySelector(".my-list");
-    itemList.removeChild(event.target.parentElement.parentElement);
-    itemList.appendChild(itemForm);
-
     // Initialize the text field w/the task's title.
-    itemForm.querySelector(".task-input").value = taskTitle;
+    listItem.querySelector(".task-input").value = taskTitle;
 
     // Initialize the date field w/the task's date.
     let monthNumber = convertMonthNameToMonthNumber(taskDate.substring(0, taskDate.indexOf(" ")));
     let dayNum = convertDayAdjectiveToDayNumber(taskDate.substring(taskDate.indexOf(" ") + 1));
-    itemForm.querySelector("#date").value = "2021-" + monthNumber + "-" + dayNum;
+    listItem.querySelector("#date").value = "2021-" + monthNumber + "-" + dayNum;
 
     // Initialize the time field w/the task's time.
-    let hour = convertHourTo24HourFormat(taskTimeframe.substring(0, taskTimeframe.indexOf(":")),
-    taskTimeframe.substring(taskTimeframe.indexOf(" ") + 1));
-    let minutes = taskTimeframe.substring(taskTimeframe.indexOf(":") + 1);
-    itemForm.querySelector("#time").value = hour + ":" + minutes;
+    let hour = taskTimeframe.substring(0, taskTimeframe.indexOf(":"));
+    let meridian = taskTimeframe.substring(taskTimeframe.indexOf(" ") + 1);
+    let convertedHour = convertHourTo24HourFormat(hour, meridian);
+    let minutes = taskTimeframe.substring(taskTimeframe.indexOf(":") + 1, taskTimeframe.indexOf(" "));
+    listItem.querySelector("#time").value = convertedHour + ":" + minutes;
 
     // Add an event listener to the form's submit button that'll call appendListItem(event).
-    itemForm.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
+    listItem.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
+}
+
+
+function appendDeleteButton(listItem)
+{
+    // Create a span element 
+}
+
+
+function deleteListItem(event)
+{
+    //
 }
 
 
@@ -506,7 +505,7 @@ function convertHourTo24HourFormat(hour, meridian)
     // Convert the task's hour to 24-hour format, if necessary.
     if (Number.parseInt(hour) < 12 && meridian === "AM")
     {
-        modified_hour = hour;
+        modified_hour = "0" + hour;
     }
     else if (Number.parseInt(hour) === 12 && meridian === "AM")
     {
