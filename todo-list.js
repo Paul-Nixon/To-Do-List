@@ -41,9 +41,8 @@ function renderListItemForm()
         <button class="btn todo-list-submit-btn">Submit</button>
     </div>`
 
-    // Get the item-list and append the "li" element to it.
-    let itemList = document.querySelector(".my-list");
-    itemList.appendChild(itemForm);
+    // Append the "li" element to the list.
+    document.querySelector(".my-list").appendChild(itemForm);
 
     // Add an event listener to the form's submit button that'll call appendListItem(event).
     itemForm.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
@@ -53,10 +52,10 @@ function renderListItemForm()
 function appendListItem(event)
 {
     // Get the form and its inputs.
-    let itemForm = event.target.closest("li"),
-    taskName = itemForm.querySelector(".task-input").value,
-    taskDate = itemForm.querySelector("#date").value,
-    taskStartTime = itemForm.querySelector("#time").value;
+    let newItem = event.target.closest("li"),
+    taskName = newItem.querySelector(".task-input").value,
+    taskDate = newItem.querySelector("#date").value,
+    taskStartTime = newItem.querySelector("#time").value;
 
     // Get the date's month & day.
     let month = convertMonthNumberToMonthName(taskDate.substring(5,7));
@@ -66,7 +65,7 @@ function appendListItem(event)
     let modifiedTaskTime = modifyTaskTime(taskStartTime);
     
     // Remove the list item's form and render its info.
-    itemForm.innerHTML = `
+    newItem.innerHTML = `
     <div class="task-content-wrapper">
         <div class="task-details-wrapper">
             <span class="task-title">${taskName}</span>
@@ -77,8 +76,14 @@ function appendListItem(event)
         <button class="btn todo-list-edit-btn">Edit</button>
     </div>`
 
-    // Add an event listener to the new item's Edit button that'll call editListItem(event).
-    itemForm.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
+    // Append a delete button to the list item.
+    appendDeleteButton(newItem);
+
+    /* Add an event listener to the new item's Edit button that'll call editListItem(event),
+       and add an event listener to the delete button that'll call deleteListItem(event).
+    */
+    newItem.querySelector(".todo-list-edit-btn").addEventListener("click", editListItem);
+    newItem.querySelector(".delete-btn").addEventListener("click", deleteListItem);
 }
 
 
@@ -90,7 +95,7 @@ function editListItem(event)
     taskDate = listItem.querySelector(".task-date").innerText,
     taskTimeframe = listItem.querySelector(".task-timeframe").innerText;
 
-    // Render the list item's info as a form.
+    // Render the list item as a form.
     listItem.innerHTML = `
     <div class="task-form-wrapper">
         <div class="form-wrapper">
@@ -135,13 +140,29 @@ function editListItem(event)
 
 function appendDeleteButton(listItem)
 {
-    // Create a span element 
+    // Create a span element.
+    let span = document.createElement("span");
+
+    // Create a text node w/a 'x' symbol.
+    let deleteSymbol = document.createTextNode("\u00D7"); // Multiplication/delete symbol
+
+    // Append the delete symbol to the span element.
+    span.classList.add("delete-btn");
+    span.appendChild(deleteSymbol);
+
+    // Append the span element to the list item.
+    listItem.querySelector(".task-content-wrapper").appendChild(span);
 }
 
 
 function deleteListItem(event)
 {
-    //
+    // Get the list and the delete button's grandparent (the "li" element it's nested in).
+    let list = document.querySelector(".my-list");
+    let listItem = event.target.closest("li");
+
+    // Remove the item from the list.
+    list.removeChild(listItem);
 }
 
 
