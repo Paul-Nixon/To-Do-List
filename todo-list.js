@@ -7,14 +7,24 @@ else
     ready();
 }
 
-
+/*
+    Function ready() simply adds an event listener to the to-do list's Add button to
+    call renderListItemForm() when clicked.
+    Precondition: todo-list.html is fully rendered.
+    Postcondition: The Add button calls renderListItemForm() when clicked.
+*/
 function ready()
 {
     let button = document.querySelector(".todo-list-add-btn");
     button.addEventListener("click", renderListItemForm);
 }
 
-
+/*
+    Function renderListItemForm() renders a form which the user completes to add a task to the list.
+    call renderListItemForm() when clicked.
+    Precondition: The Add button was clicked.
+    Postcondition: A form is rendered in the task's container.
+*/
 function renderListItemForm()
 {
     // Create an "li" element and append the form to it.
@@ -48,7 +58,11 @@ function renderListItemForm()
     itemForm.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
 }
 
-
+/*
+    Function appendListItem(event) appends a task consisting of a form's info to the list.
+    Precondition: A form's Submit button was clicked.
+    Postcondition: A task is appended to the list.
+*/
 function appendListItem(event)
 {
     // Get the form and its inputs.
@@ -86,7 +100,11 @@ function appendListItem(event)
     newItem.querySelector(".delete-btn").addEventListener("click", deleteListItem);
 }
 
-
+/*
+    Function editListItem(event) renders a form consisting of an existing task's info.
+    Precondition: An existing task's Edit button was clicked.
+    Postcondition: A form consisting of an existing task's info is rendered.
+*/
 function editListItem(event)
 {
     // Get the Edit button's respective list item and its info.
@@ -137,7 +155,12 @@ function editListItem(event)
     listItem.querySelector(".todo-list-submit-btn").addEventListener("click", appendListItem);
 }
 
-
+/*
+    Function appendDeleteButton(listItem) appends a delete button to a task after its respective form's been
+    completed.
+    Precondition: A task's form's Submit button was clicked.
+    Postcondition: A delete button is appended to a task.
+*/
 function appendDeleteButton(listItem)
 {
     // Create a span element.
@@ -154,7 +177,11 @@ function appendDeleteButton(listItem)
     listItem.querySelector(".task-content-wrapper").appendChild(span);
 }
 
-
+/*
+    Function deleteListItem(event) removes a task from the list after its respective delete button's clicked.
+    Precondition: A task's delete button was clicked.
+    Postcondition: The task is removed from the list.
+*/
 function deleteListItem(event)
 {
     // Get the list and the delete button's grandparent (the "li" element it's nested in).
@@ -165,7 +192,12 @@ function deleteListItem(event)
     list.removeChild(listItem);
 }
 
-
+/*
+    Function convertMonthNumberToMonthName(month_num) takes a month's number from a form's date input and returns
+    its corresponding name.
+    Precondition: A form's Submit button was clicked.
+    Postcondition: A month's name is returned.
+*/
 function convertMonthNumberToMonthName(month_num)
 {
     // Create a variable that'll store the month's name.
@@ -216,7 +248,12 @@ function convertMonthNumberToMonthName(month_num)
     return month_name;
 }
 
-
+/*
+    Function convertDayNumberToDayAdjective(day_num) takes a day's number from a form's date input and returns
+    its corresponding adjective.
+    Precondition: A form's Submit button was clicked.
+    Postcondition: A day's corresponding adjective is returned.
+*/
 function convertDayNumberToDayAdjective(day_num)
 {
     // Create a variable that'll store the day's adjective.
@@ -324,7 +361,12 @@ function convertDayNumberToDayAdjective(day_num)
     return day_adj;
 }
 
-
+/*
+    Function modifyTaskTime(taskStartTime) takes a value from a form's time input and returns
+    its corresponding 12-hour, AM/PM format value.
+    Precondition: A form's Submit button was clicked.
+    Postcondition: A time input's corresponding 12-hour, AM/PM format value is returned.
+*/
 function modifyTaskTime(taskStartTime)
 {
     // Get the time's hours and minutes.
@@ -358,7 +400,12 @@ function modifyTaskTime(taskStartTime)
     return hours + ":" + minutes + " " + meridian;
 }
 
-
+/*
+    Function convertMonthNameToMonthNumber(month_name) takes an existing task's month name and returns
+    its corresponding number for a form's date input.
+    Precondition: An existing task's Edit button was clicked.
+    Postcondition: A month's corresponding number is returned.
+*/
 function convertMonthNameToMonthNumber(month_name)
 {
     // Create a variable that'll store the month's name.
@@ -409,7 +456,12 @@ function convertMonthNameToMonthNumber(month_name)
     return month_number;
 }
 
-
+/*
+    Function convertDayAdjectiveToDayNumber(day_adj) takes an existing task's month day's adjective and returns
+    its corresponding number for a form's date input.
+    Precondition: An existing task's Edit button was clicked.
+    Postcondition: A month day's corresponding number is returned.
+*/
 function convertDayAdjectiveToDayNumber(day_adj)
 {
     // Create a variable that'll store the day's adjective.
@@ -517,7 +569,12 @@ function convertDayAdjectiveToDayNumber(day_adj)
     return day_num;
 }
 
-
+/*
+    Function convertHourTo24HourFormat(hour, meridian) takes an existing task's time's hour and meridian and returns
+    its corresponding hour in 24-hour format for a form's time input.
+    Precondition: An existing task's Edit button was clicked.
+    Postcondition: An hour in 24-hour format is returned.
+*/
 function convertHourTo24HourFormat(hour, meridian)
 {
     // Create a variable that'll store the converted hour.
