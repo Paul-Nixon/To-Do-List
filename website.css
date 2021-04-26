@@ -183,6 +183,27 @@ a
     background-color: rgb(97, 93, 93);
     color: black;
 }
+
+.img-wrapper
+{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  height: 546px;
+}
+
+.todo-list-img
+{
+  background-image: url();
+  flex-grow: 1;
+  background-repeat: no-repeat;
+  background-size: contain;
+  max-height: 70vh;
+  min-width: 30vw;
+  background-position: center;
+}
 /* index.html Styles END */
 
 
@@ -259,11 +280,6 @@ a
 /* about.html Styles END */
 
 
-/* how-to-use.html Styles START */
-
-/* how-to-use.html Styles END */
-
-
 /* todo-list.html Styles START */
 .todo-list-main-section-container
 {
@@ -325,7 +341,7 @@ a
 .my-list li
 {
     list-style-type: none;
-    background: brown;
+    background: red;
     font-size: 18px;
     transition: 0.2s;
 
@@ -344,12 +360,12 @@ a
 
 .my-list li:nth-child(odd) .task-title
 {
-    color: coral;
+    color: yellow;
 }
 
 .my-list li:nth-child(odd) .task-timeframe, .my-list li:nth-child(odd) .task-date
 {
-    color: hotpink;
+    color: white;
 }
 
 .my-list li:hover
@@ -366,12 +382,7 @@ a
 
 .task-form-wrapper
 {
-    background-color: grey;
-}
-
-.task-content-wrapper
-{
-    cursor: pointer;
+    background-color: brown;
 }
 
 .form-wrapper, .task-details-wrapper
@@ -418,7 +429,7 @@ a
     padding-left: 0.625rem;
 }
 
-.task-title, .task-date, .task-timeframe
+.task-title, .task-date, .task-timeframe, .task-form-wrapper, .form-wrapper, .task-label, .delete-btn
 {
     min-width: 0;
 }
@@ -433,7 +444,7 @@ a
 
 .task-timeframe, .task-date
 {
-    color: orange;
+    color: black;
     font-weight: bold;
 }
 
@@ -461,7 +472,7 @@ a
 .delete-btn
 {
     padding: 1rem;
-    font-size: 45px;
+    font-size: 40px;
     cursor: pointer;
 }
 
